@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const walid_abonnmentSchema = new mongoose.Schema(
+const abonnmentSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -24,6 +24,6 @@ const walid_abonnmentSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const walid_abonnment = mongoose.model("abonnment", walid_abonnmentSchema);
+const abonnment = mongoose.model("abonnment", abonnmentSchema);
 
-export default walid_abonnment;
+export default abonnment;

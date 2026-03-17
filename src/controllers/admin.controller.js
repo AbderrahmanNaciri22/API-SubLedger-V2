@@ -28,7 +28,8 @@ export const getUserSubscriptions = async (req, res) => {
 export const getUsers = async (req, res) => {
   try{
       const Users = await User.find();
+      return res.status(200).json(Users);
   }catch{
-    
+    res.status(500).json({ message: error.message });
   }
 }
