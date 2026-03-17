@@ -1,5 +1,5 @@
 {
-  "name": "src",
+  "name": "api_subledger",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -10,7 +10,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "dotenv": "^17.3.1",
@@ -18,7 +18,7 @@
     "express-validator": "^7.3.1",
     "joi": "^18.0.2",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.3.0"
+    "mongoose": "^9.2.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
