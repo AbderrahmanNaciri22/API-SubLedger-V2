@@ -24,6 +24,6 @@ const walid_abonnmentSchema = new mongoose.Schema(
   { timestamps: true },
 );
 
-const walid_abonnment = mongoose.model("walid_abonnment", walid_abonnmentSchema);
+const walid_abonnment = mongoose.model("abonnment", walid_abonnmentSchema);
 
 export default walid_abonnment;

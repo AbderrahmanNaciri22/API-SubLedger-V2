@@ -19,6 +19,6 @@ const walid_usersSchema = new mongoose.Schema({
   },
 });
 
-const walid_users = mongoose.model("walid_users", walid_usersSchema);
+const walid_users = mongoose.model("users", walid_usersSchema);
 
 export default walid_users;
