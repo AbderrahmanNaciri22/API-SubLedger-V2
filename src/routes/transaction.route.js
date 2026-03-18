@@ -11,7 +11,7 @@ import {protectRoute} from "../middlewares/authMiddleware.js"
 const router = express.Router()
 
 
-router.post("/",protectRoute,createTransaction)
+router.post("/createTransaction",protectRoute,createTransaction)
 
 
 
