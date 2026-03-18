@@ -59,5 +59,14 @@ export const getTransactionsByUserId = async (req,res) => {
     res.status(500).json({ message: error.message });
   }  
 }
+export const getTransactionsBySubscriptionId = async (req,res) => {
+  try{
+    const subscriptionId = req.params.id;
+    const transaction = await Transaction.find({subscriptionId :subscriptionId })
+    return res.status(200).json(transaction); 
+  }catch(error){
+    res.status(500).json({ message: error.message });
+  }  
+}
 
 
