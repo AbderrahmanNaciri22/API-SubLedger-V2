@@ -1,4 +1,5 @@
 import express from "express"
+import {checkAbonnementTransaction} from "../middlewares/transactionMiddleware.js"
 
 import {
 createTransaction
@@ -11,7 +12,7 @@ import {protectRoute} from "../middlewares/authMiddleware.js"
 const router = express.Router()
 
 
-router.post("/",protectRoute,createTransaction)
+router.post("/createTransaction",protectRoute,checkAbonnementTransaction,createTransaction)
 
 
 

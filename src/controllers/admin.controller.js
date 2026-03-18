@@ -1,5 +1,8 @@
 import Subscription from "../models/Subscription.js";
 import User from "../models/User.js";
+import Transaction from "../models/transaction.js";
+
+
 
 export const getUserSubscriptions = async (req, res) => {
   try {
@@ -42,3 +45,19 @@ export const getUsersById = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 }
+
+export const getTransactionsByUserId = async (req,res) => {
+  try{
+    const userId = req.params.id;
+    const subscription = await Subscription.find({ userId }).select("_id");
+    const subscriptionIds  = subscription.map(sub => sub._id);
+    const transaction = await Transaction.find({
+      subscriptionId : {$in : subscriptionIds}
+    })
+    return res.status(200).json(transaction); 
+  }catch(error){
+    res.status(500).json({ message: error.message });
+  }  
+}
+
+
