@@ -11,11 +11,13 @@ import {
   validateCreateSubscription,
   validateUpdateSubscription,
 } from "../middlewares/subscription.middleware.js";
+import {getStats} from "../controllers/stats.controller.js"
 
 const router = express.Router();
 
 router.use(protectRoute);
 
+router.get("/stats", getStats)
 router.post("/create", validateCreateSubscription, createSubscription);
 router.get("/", getSubscriptions);
 router.get("/:id", getSubscription);
