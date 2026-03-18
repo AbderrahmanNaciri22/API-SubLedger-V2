@@ -12,7 +12,12 @@ const abonnmentSchema = new mongoose.Schema(
     },
     billingCycle: {
       type: String,
+      enum: ["monthly", "yearly"],
       required: true,
+    },
+    status: {
+      type: String,
+      enum: ["active", "cancelled"],
     },
 
     userId: {
