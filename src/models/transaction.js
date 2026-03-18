@@ -1,7 +1,6 @@
-// import { ref, required } from "joi";
-import Joi from "joi";
+
 import mongoose from "mongoose";
-Joi.string().required();
+
 
 const transactionSchema = new mongoose.Schema(
   {
@@ -22,5 +21,9 @@ const transactionSchema = new mongoose.Schema(
     timestamps: true,
   },
 );
-const Transaction = mongoose.model("Transaction", transactionSchema);
+
+const Transaction =
+  mongoose.models.Transaction ||
+  mongoose.model("Transaction", transactionSchema);
+
 export default Transaction;
