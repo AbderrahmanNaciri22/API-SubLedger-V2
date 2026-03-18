@@ -8,7 +8,10 @@ A RESTful API for managing user subscriptions, built with **Node.js**, **Express
 
 ### Class Diagram
 
-![Class Diagram](./images/calss.png)
+![Class Diagram](./images/subledgerclass.png)
+
+
+
 
 ### Use Case Diagram
 
