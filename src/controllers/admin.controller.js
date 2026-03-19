@@ -82,4 +82,17 @@ export const getTotalDepanceAbonnement = async (req,res) => {
   }  
 }
 
+export const getTotalDepanceGlobal = async (req,res) => {
+  try{
+    let totalDepanceGlobal = 0
+    const transactions = await Transaction.find()
+    transactions.forEach((transaction)=>{
+        totalDepanceGlobal += transaction.amount
+    })
+    return res.status(200).json(totalDepanceGlobal); 
+  }catch(error){
+    res.status(500).json({ message: error.message });
+  }  
+}
+
 
