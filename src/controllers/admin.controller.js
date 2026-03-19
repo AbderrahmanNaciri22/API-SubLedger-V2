@@ -60,4 +60,14 @@ export const getTransactionsByUserId = async (req,res) => {
   }  
 }
 
+export const getTransactionsBySubscriptionId = async (req,res) => {
+  try{
+    const userId = req.params.id;
+
+    return res.status(200).json(transaction); 
+  }catch(error){
+    res.status(500).json({ message: error.message });
+  }  
+}
+
 
