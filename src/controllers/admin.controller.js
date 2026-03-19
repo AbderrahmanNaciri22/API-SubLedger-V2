@@ -68,5 +68,18 @@ export const getTransactionsBySubscriptionId = async (req,res) => {
     res.status(500).json({ message: error.message });
   }  
 }
+export const getTotalDepanceAbonnement = async (req,res) => {
+  try{
+    const subscriptionId = req.params.id;
+    let totalDepanceAbonnment = 0
+    const transactions = await Transaction.find({subscriptionId :subscriptionId })
+    transactions.forEach((transaction)=>{
+        totalDepanceAbonnment += transaction.amount
+    })
+    return res.status(200).json(totalDepanceAbonnment); 
+  }catch(error){
+    res.status(500).json({ message: error.message });
+  }  
+}
 
 
