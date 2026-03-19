@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 
 const abonnmentSchema = new mongoose.Schema(
@@ -18,6 +19,12 @@ const abonnmentSchema = new mongoose.Schema(
     status: {
       type: String,
       enum: ["active", "cancelled"],
+      required:true,
+    },
+
+    startDate: {
+      type: Date,
+      default: Date.now,
     },
 
     userId: {

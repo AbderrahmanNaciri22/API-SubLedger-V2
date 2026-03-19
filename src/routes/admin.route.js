@@ -24,4 +24,7 @@ router.get("/subscriptions/totaldepanceglobal",protectRoute,requireAdmin,getTota
 
 
 
+
+
+
 export default router;
