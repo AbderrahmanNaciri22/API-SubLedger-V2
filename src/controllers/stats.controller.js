@@ -1,4 +1,5 @@
 import Subscription from "../models/Subscription.js"
+import Transaction from "../models/transaction.js"
 
 export const getStats = async (req, res) => {
   try {
@@ -6,7 +7,6 @@ export const getStats = async (req, res) => {
 
     const subscriptions = await Subscription.find({ userId })
 
-    // case: no subscriptions
     if (subscriptions.length === 0) {
       return res.status(200).json({
         totalSubscriptions: 0,
@@ -25,17 +25,34 @@ export const getStats = async (req, res) => {
       sub => sub.status === "cancelled"
     ).length
 
+    const subscriptionIds = subscriptions.map(sub => sub._id)
+    // totalSpent
+    const result = await Transaction.aggregate([
+      {
+        $match: {
+          subscriptionId: { $in: subscriptionIds }
+        }
+      },
+      {
+        $group: {
+          _id: null,
+          totalSpent: { $sum: "$amount" }
+        }
+      }
+    ])
+
+    const totalSpent = result.length > 0 ? result[0].totalSpent : 0
+
     return res.status(200).json({
       totalSubscriptions,
       activeSubscriptions,
-      cancelledSubscriptions
+      cancelledSubscriptions,
+      totalSpent
     })
 
   } catch (error) {
-    console.log(error) // 👈 مهم باش تشوفي الخطأ الحقيقي
-    return res.status(500).json({
-      message: "Internal server error"
-    })
+    console.log(error)
+    return res.status(500).json({message: "Internal server error"})
   }
 }
 
