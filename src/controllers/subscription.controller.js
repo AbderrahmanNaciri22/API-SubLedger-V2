@@ -2,7 +2,7 @@ import Subscription from "../models/Subscription.js";
 
 export const createSubscription = async (req, res) => {
   try {
-    const { name, price, billingCycle } = req.body;
+    const { name, price, billingCycle,status } = req.body;
 
     console.log(req.user);
 
@@ -10,6 +10,7 @@ export const createSubscription = async (req, res) => {
       name,
       price,
       billingCycle,
+      status,
       userId: req.user._id,
     });
 
