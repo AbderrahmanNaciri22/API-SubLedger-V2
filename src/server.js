@@ -8,6 +8,8 @@ import adminRoutes from "./routes/admin.route.js";
 import userRoutes from "./routes/user.route.js";
 import transactionRoutes from "./routes/transaction.route.js";
 import  getTransactionsRoutes  from  "./routes/getTransaction.route.js"
+import cancelSubscriptionRoutes from "./routes/cancelSubscriptionRoutes.js";
+
 
 dotenv.config();
 
@@ -21,6 +23,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/transaction", transactionRoutes);
 app.use("/api/subscriptions",getTransactionsRoutes );
+app.use("/api/subscriptions", cancelSubscriptionRoutes);
 const MONGODB_URL = process.env.MONGO_URI;
 const port = process.env.PORT || 5000;
 
