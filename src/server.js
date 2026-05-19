@@ -7,7 +7,7 @@ import subscriptionsRoutes from "./routes/subscription.route.js";
 import adminRoutes from "./routes/admin.route.js";
 import userRoutes from "./routes/user.route.js";
 import transactionRoutes from "./routes/transaction.route.js";
-import  getTransactionsRoutes  from  "./routes/getTransaction.route.js"
+import getTransactionsRoutes from "./routes/getTransaction.route.js";
 
 dotenv.config();
 
@@ -15,12 +15,19 @@ const app = express();
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  req.name = "walid";
+  console.log(req.name);
+  next();
+});
+
 app.use("/api/auth", authRoutes);
 app.use("/api/subscriptions", subscriptionsRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/transaction", transactionRoutes);
-app.use("/api/subscriptions",getTransactionsRoutes );
+app.use("/api/subscriptions", getTransactionsRoutes);
+
 const MONGODB_URL = process.env.MONGO_URI;
 const port = process.env.PORT || 5000;
 
