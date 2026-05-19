@@ -17,6 +17,12 @@ A RESTful API for managing user subscriptions, built with **Node.js**, **Express
 
 ![Use Case Diagram](./images/use_case.png)
 
+
+### Use Case Sequence 
+![Use Case Diagram](./images/digrammeSequance.png)
+
+
+
 ---
 
 ## 🚀 Tech Stack
