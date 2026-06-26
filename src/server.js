@@ -1,42 +1,19 @@
-import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-
-import authRoutes from "./routes/auth.route.js";
-import subscriptionsRoutes from "./routes/subscription.route.js";
-import adminRoutes from "./routes/admin.route.js";
-import userRoutes from "./routes/user.route.js";
-import transactionRoutes from "./routes/transaction.route.js";
-import getTransactionsRoutes from "./routes/getTransaction.route.js";
+import app from "./app.js";
 
 dotenv.config();
 
-const app = express();
+const PORT = process.env.PORT || 5000;
 
-app.use(express.json());
+try {
+  await mongoose.connect(process.env.MONGO_URI);
 
-app.use((req, res, next) => {
-  req.name = "walid";
-  console.log(req.name);
-  next();
-});
+  console.log("MongoDB Connected");
 
-app.use("/api/auth", authRoutes);
-app.use("/api/subscriptions", subscriptionsRoutes);
-app.use("/api/admin", adminRoutes);
-app.use("/api/user", userRoutes);
-app.use("/api/transaction", transactionRoutes);
-app.use("/api/subscriptions", getTransactionsRoutes);
-
-const MONGODB_URL = process.env.MONGO_URI;
-const port = process.env.PORT || 5000;
-
-app.listen(port, async () => {
-  console.log(`Server running on ${port}`);
-  try {
-    let conn = await mongoose.connect(MONGODB_URL);
-    console.log(`mongodb connected  : ${conn.connection.host}`);
-  } catch (error) {
-    console.log("Mongodb connection error:", error);
-  }
-});
+  app.listen(PORT, () => {
+    console.log(`Server running on ${PORT}`);
+  });
+} catch (err) {
+  console.error(err);
+}
